@@ -1,10 +1,10 @@
 import './App.css';
+import { SongList } from './components/SongsList';
 
 import results from './mocks/results.json';
 
 function App() {
   const songs = results.data;
-  const hasSongs = results.total > 0;
 
   return (
     <div className='app'>
@@ -16,25 +16,7 @@ function App() {
         </form>
       </header>
       <main>
-        {
-          hasSongs
-            ? (
-              <ul>
-              {
-                songs.map((song) => (
-                  <li key={song.id}>
-                    <h3>{song.title}</h3>
-                    <img src={song.album.cover_medium} alt={song.album.title} />
-                    <audio src={song.preview} />
-                  </li>
-                ))
-              } 
-              </ul>
-            )
-          : (
-            <p>There is no songs for that query</p>
-          )
-        }
+        <SongList songs={songs} />
       </main>
     </div>
   )
