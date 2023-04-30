@@ -5,8 +5,8 @@ import { useSongs } from "./hooks/useSongs";
 import { useSearch } from "./hooks/useSearch";
 
 function App() {
-  const { songs } = useSongs();
-  const { query, setQuery, error } = useSearch("");
+  const { query, setQuery, queryError } = useSearch();
+  const { songs, getSongs, loading, error } = useSongs({ query });
 
   const handleChange = (event) => {
     const userQuery = event.target.value;
@@ -15,6 +15,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    getSongs();
   };
 
   return (
@@ -30,10 +31,11 @@ function App() {
           />
           <button type="submit">Search</button>
         </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {queryError && <p>{queryError}</p>}
       </header>
       <main>
-        <SongList songs={songs} />
+        {error && <p>Error fetching songs</p>}
+        {loading ? <p>Loading..</p> : <SongList songs={songs} />}
       </main>
     </div>
   );

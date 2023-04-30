@@ -3,6 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 900px;
 }
 
 .app h1 {
@@ -22,4 +24,13 @@ header {
 main {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+
+.songs {
+  list-style: none;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }

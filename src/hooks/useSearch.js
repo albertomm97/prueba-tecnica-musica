@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 export function useSearch() {
   const [query, setQuery] = useState("");
-  const [error, setError] = useState(null);
+  const [queryError, setQueryError] = useState(null);
   const isFirstInput = useRef(true);
 
   useEffect(() => {
@@ -12,17 +12,17 @@ export function useSearch() {
     }
 
     if (query === "") {
-      setError("Empty query");
+      setQueryError("Empty query");
       return;
     }
 
     if (query.length < 4) {
-      setError("Query should have 4 or more characters");
+      setQueryError("Query should have 4 or more characters");
       return;
     }
 
-    setError("");
+    setQueryError(null);
   }, [query]);
 
-  return { query, setQuery, error };
+  return { query, setQuery, queryError };
 }

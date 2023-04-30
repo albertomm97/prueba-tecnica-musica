@@ -4,9 +4,9 @@ export function SongList({ songs }) {
   const hasSongs = songs.length !== 0;
 
   return hasSongs ? (
-    <ul>
+    <ul className="songs">
       {songs.map((song) => (
-        <Song key={song.id} song={song} />
+        <Song className="song" key={song.id} song={song} />
       ))}
     </ul>
   ) : (
