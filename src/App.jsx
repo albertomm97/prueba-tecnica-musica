@@ -35,7 +35,8 @@ function App() {
       </header>
       <main>
         {error && <p>Error fetching songs</p>}
-        {loading ? <p>Loading..</p> : <SongList songs={songs} />}
+        {!error && loading && <p>Loading..</p>}
+        {!error && !loading && <SongList songs={songs} />}
       </main>
     </div>
   );
