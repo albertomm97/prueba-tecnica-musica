@@ -16,8 +16,6 @@ export function useSongs({ query, sort }) {
   const [error, setError] = useState(null);
   const previousSearch = useRef(null);
 
-  console.log('useSongs', songs);
-
   const getSongs = useCallback(async ({ query }) => {
     if (!query || query === "" || previousSearch.current === query) {
       return;
