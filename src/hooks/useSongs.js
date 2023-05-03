@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 
 const API_URL = "https://deezerdevs-deezer.p.rapidapi.com/search?q=";
 
@@ -43,10 +43,12 @@ export function useSongs({ query, sort }) {
       });
   };
 
-  const sortedSongs = sort ? 
-  [...songs].sort((a, b) => {
-    return b.rank - a.rank;
-  }) : songs;
+  const sortedSongs = useMemo(() => {
+    return sort ? 
+    [...songs].sort((a, b) => {
+      return b.rank - a.rank;
+    }) : songs;
+  }, [songs, sort])
 
   return { songs: sortedSongs, getSongs, loading, error };
 }
