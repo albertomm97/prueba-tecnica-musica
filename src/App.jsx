@@ -22,7 +22,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getSongs();
+    getSongs({ query });
   };
 
   return (
